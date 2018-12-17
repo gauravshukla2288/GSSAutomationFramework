@@ -7,6 +7,8 @@ import org.testng.ITestContext;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import mygss.framework.WebAutomation.util.XMLHelper;
+
 public class ContextManager {
 	
 	private static Context globalContext;
@@ -28,6 +30,7 @@ public class ContextManager {
 	
 	public static void initGlobalContext(ITestContext iTestCtx) {
 		iTestCtx = getContextFromConfigFile(iTestCtx);
+		globalContext = new Context(iTestCtx);
 	}
 
 	private static ITestContext getContextFromConfigFile(ITestContext iTestCtx) {
@@ -35,7 +38,7 @@ public class ContextManager {
 			if(iTestCtx.getSuite().getParameter(Context.TEST_CONFIG) != null) {
 				File suiteFile = new File(iTestCtx.getSuite().getXmlSuite().getFileName());
 				String configFile = suiteFile.getPath().replace(suiteFile.getName(), "") + iTestCtx.getSuite().getParameter("testConfig");
-				NodeList nList;// =XMLHelper
+				NodeList nList=XMLHelper.getXMLNodes(configFile, "parameter");
 				Map<String, String> parameters = iTestCtx.getSuite().getXmlSuite().getParameters();
 			
 				for(int i = 0 ;i< nList.getLength() ; i++) {
