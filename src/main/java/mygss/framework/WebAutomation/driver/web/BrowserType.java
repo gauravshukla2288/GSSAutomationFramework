@@ -1,4 +1,4 @@
-package mygss.framework.WebAutomation.driver;
+package mygss.framework.WebAutomation.driver.web;
 
 public enum BrowserType {
 

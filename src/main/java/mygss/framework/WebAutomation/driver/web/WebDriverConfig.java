@@ -1,4 +1,4 @@
-package mygss.framework.WebAutomation.driver;
+package mygss.framework.WebAutomation.driver.web;
 
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.Proxy.ProxyType;

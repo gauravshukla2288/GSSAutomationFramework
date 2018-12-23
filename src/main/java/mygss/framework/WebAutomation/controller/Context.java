@@ -1,8 +1,7 @@
-package mygss.framework.WebAutomation.driver;
+package mygss.framework.WebAutomation.controller;
 
-import java.awt.ItemSelectable;
 import java.io.File;
-import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,7 +11,8 @@ import java.util.Map.Entry;
 
 import org.testng.ITestContext;
 
-import net.bytebuddy.utility.privilege.GetSystemPropertyAction;
+import mygss.framework.WebAutomation.driver.web.ScreenShot;
+
 
 public class Context {
 

@@ -1,4 +1,4 @@
-package mygss.framework.WebAutomation.driver;
+package mygss.framework.WebAutomation.controller;
 
 import java.io.File;
 import java.util.Map;
