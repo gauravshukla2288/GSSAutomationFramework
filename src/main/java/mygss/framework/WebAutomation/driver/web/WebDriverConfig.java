@@ -10,7 +10,7 @@ public class WebDriverConfig {
 	
 	private boolean setAcceptUntrustedCertificates = true;
 	private boolean enableJavascript = true;
-	private boolean enableCookie = true;
+	//private boolean enableCookie = true;
 
 	private WebDriver driver;
 	private BrowserType browserType = BrowserType.Chrome;
@@ -160,6 +160,19 @@ public class WebDriverConfig {
 			proxy.setSslProxy(proxyHost);
 		}
 		return proxy;
+	}
+	public boolean isSetAcceptUntrustedCertificates() {
+		return setAcceptUntrustedCertificates;
+	}
+	public void setSetAcceptUntrustedCertificates(boolean setAcceptUntrustedCertificates) {
+		this.setAcceptUntrustedCertificates = setAcceptUntrustedCertificates;
+	}
+	
+	public boolean isEnableJavascript() {
+		return enableJavascript;
+	}
+	public void setEnableJavascript(boolean enableJavascript) {
+		this.enableJavascript = enableJavascript;
 	}
 	
 }
