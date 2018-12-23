@@ -36,6 +36,8 @@ public class Context {
 	public static final String OPERA_DRIVER_PATH = "operaDriverPath";
 	public static final String SET_ACCEPT_UNTRUSTED_CERTIFICATE = "setAcceptUntrustedCertificate";
 
+	
+
 	public static final String BROWSER_DOWNLOAD_DIRECTORY = "browserDownloadDirectory";
 
 	public static final String OUTPUT_DIRECTORY = "outputDirectory";
@@ -294,7 +296,15 @@ public class Context {
 	public  String getTestDataFile() {
 		return (String) contextMap.get(TEST_DATA_FILE);
 	}
+	
+	public boolean isSetAcceptUntrustedCertificate() {
+		return (Boolean)contextMap.get(SET_ACCEPT_UNTRUSTED_CERTIFICATE);
+	}
 
+	
+	public boolean isEnableJavascript() {
+		return (Boolean)contextMap.get(ENABLE_JAVASCRIPT);
+	}
 	
 	// Setter methods
 

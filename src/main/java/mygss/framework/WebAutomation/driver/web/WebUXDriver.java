@@ -1,5 +1,9 @@
 package mygss.framework.WebAutomation.driver.web;
 
+import java.util.Date;
+
+import javax.management.RuntimeErrorException;
+
 import org.openqa.selenium.WebDriver;
 
 import mygss.framework.WebAutomation.controller.ContextManager;
@@ -40,11 +44,52 @@ public class WebUXDriver {
 
 	public WebDriver createWebDriver() {
 		
+		System.out.println(Thread.currentThread() + " : " +new Date() + "Starting creating webdriver instance : " + this.getBrowser());
+		
+		
+		return driver;
+	}
+	
+	
+	public WebDriver createRemoteWebDriver(String browser) {
+		
+		WebDriver driver = null;
+		config.setBrowserType(BrowserType.getBrowserType(browser));
+		
+		if(config.getBrowserType() == BrowserType.Chrome) {
+			
+		}
+		else if(config.getBrowserType() == BrowserType.Firefox) {
+			
+		}
+		else if((config.getBrowserType() == BrowserType.Opera)) {
+			
+		}
+		else if(config.getBrowserType() == BrowserType.Safari) {
+			
+		}
+		else if(config.getBrowserType() == BrowserType.InternetExplorer) {
+			
+		}
+		else if(config.getBrowserType() == BrowserType.HtmlUnit){
+			
+		}
+		else {
+			throw new RuntimeException("Browser Not Supported");
+		}
+			
+		
+		
+		return driver;
 	}
 	
 	public WebUXDriver() {
 		init();
 		uxDriverSession.set(this);
+	}
+	
+	public String getBrowser() {
+		return config.getBrowserType().getType();
 	}
 	
 	private void init() {
@@ -77,7 +122,22 @@ public class WebUXDriver {
 			config.setProxyHost(ContextManager.getGlobalContext().getWebProxyAddress());
 		}
 		
-		config.setSetAcceptUntrustedCertificates(ContextManager.getGlobalContext().);
+		config.setSetAcceptUntrustedCertificates(ContextManager.getGlobalContext().isSetAcceptUntrustedCertificate());
+		
+		config.setEnableJavascript(ContextManager.getGlobalContext().isEnableJavascript());
+		
+		config.setBrowserDownloadDirectory(ContextManager.getGlobalContext().getBrowserDownloadDirectory());
+		
+		String size = ContextManager.getGlobalContext().getBrowserWindowSize();
+		
+		if(size != null) {
+			int width = Integer.parseInt(size.split(",")[0]);
+			int height = Integer.parseInt(size.split(",")[1]);
+			
+			config.setBrowserWindowWidth(width);
+			config.setBrowserWindowHeight(height);
+			
+		}
 		
 	}
 }
