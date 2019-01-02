@@ -12,8 +12,10 @@ public class WebUXDriver {
 	
 	private static ThreadLocal<WebDriver> driverSession = new ThreadLocal<WebDriver>();
 	private static ThreadLocal<WebUXDriver> uxDriverSession = new ThreadLocal<WebUXDriver>();
-	private static ThreadLocal<String> windowhandle = new ThreadLocal<String>();
+	private static ThreadLocal<String> windowHandle = new ThreadLocal<String>();
 	
+	
+
 	private WebDriverConfig config = new WebDriverConfig();
 	private WebDriver driver;
 	
@@ -93,42 +95,42 @@ public class WebUXDriver {
 	}
 	
 	private void init() {
-		if(ContextManager.getLocalContext()==null) {
+		if(ContextManager.getContext()==null) {
 			return;
 		}
-		config.setBrowserType(BrowserType.getBrowserType(ContextManager.getGlobalContext().getWebRunBrowser()));
+		config.setBrowserType(BrowserType.getBrowserType(ContextManager.getContext().getWebRunBrowser()));
 		
-		config.setFirefoxDriverPath(ContextManager.getGlobalContext().getFirefoxDriverPath());
+		config.setFirefoxDriverPath(ContextManager.getContext().getFirefoxDriverPath());
 		
-		config.setChromeDriverPath(ContextManager.getGlobalContext().getChromeDriverPath());
+		config.setChromeDriverPath(ContextManager.getContext().getChromeDriverPath());
 		
-		config.setIeDriverPath(ContextManager.getGlobalContext().getIeDriverPath());
+		config.setIeDriverPath(ContextManager.getContext().getIeDriverPath());
 		
-		config.setOperaDriverPath(ContextManager.getGlobalContext().getOperaDriverPath());
+		config.setOperaDriverPath(ContextManager.getContext().getOperaDriverPath());
 		
-		config.setSafariDriverPath(ContextManager.getGlobalContext().getSafariDriverPath());
+		config.setSafariDriverPath(ContextManager.getContext().getSafariDriverPath());
 		
-		config.setWebSessionTimeout(ContextManager.getGlobalContext().getWebSessionTimeout());
+		config.setWebSessionTimeout(ContextManager.getContext().getWebSessionTimeout());
 
-		config.setImplicitWaitTimeout(ContextManager.getGlobalContext().getImplicitWaitTimeout());
+		config.setImplicitWaitTimeout(ContextManager.getContext().getImplicitWaitTimeout());
 		
-		config.setExplicitWaitTimeout(ContextManager.getGlobalContext().getExplicitWaitTimeout());
+		config.setExplicitWaitTimeout(ContextManager.getContext().getExplicitWaitTimeout());
 		
-		config.setPageLoadTimeout(ContextManager.getGlobalContext().getPageLoadTimeout());
+		config.setPageLoadTimeout(ContextManager.getContext().getPageLoadTimeout());
 		
-		config.setOutputDirectory(ContextManager.getGlobalContext().getOutputDirectory());
+		config.setOutputDirectory(ContextManager.getContext().getOutputDirectory());
 		
-		if(ContextManager.getGlobalContext().isWebProxyEnabled()==true) {
-			config.setProxyHost(ContextManager.getGlobalContext().getWebProxyAddress());
+		if(ContextManager.getContext().isWebProxyEnabled()==true) {
+			config.setProxyHost(ContextManager.getContext().getWebProxyAddress());
 		}
 		
-		config.setSetAcceptUntrustedCertificates(ContextManager.getGlobalContext().isSetAcceptUntrustedCertificate());
+		config.setSetAcceptUntrustedCertificates(ContextManager.getContext().isSetAcceptUntrustedCertificate());
 		
-		config.setEnableJavascript(ContextManager.getGlobalContext().isEnableJavascript());
+		config.setEnableJavascript(ContextManager.getContext().isEnableJavascript());
 		
-		config.setBrowserDownloadDirectory(ContextManager.getGlobalContext().getBrowserDownloadDirectory());
+		config.setBrowserDownloadDirectory(ContextManager.getContext().getBrowserDownloadDirectory());
 		
-		String size = ContextManager.getGlobalContext().getBrowserWindowSize();
+		String size = ContextManager.getContext().getBrowserWindowSize();
 		
 		if(size != null) {
 			int width = Integer.parseInt(size.split(",")[0]);
@@ -140,4 +142,124 @@ public class WebUXDriver {
 		}
 		
 	}
+	
+	// Getter 
+	
+	public BrowserType getBrowserType() {
+		return config.getBrowserType();
+	}
+	
+	public String getFirefoxDriverPath() {
+		return config.getFirefoxDriverPath();
+	}
+	
+	public int getWebSessionTimeout() {
+		return config.getWebSessionTimeout();
+	}
+	
+	public double getImplicitWaitTimeout() {
+		return config.getImplicitWaitTimeout();
+	}
+	
+	public int getExplicitWaitTimeout() {
+		return config.getExplicitWaitTimeout();
+	}
+	
+	public int getPageLoadTimeout() {
+		return config.getPageLoadTimeout();
+	}
+
+	public static String getWindowhandle() {
+		return windowHandle.get();
+	}
+
+	public WebDriverConfig getConfig() {
+		return config;
+	}
+	
+	public String getOutputDirectory() {
+		return config.getOutputDirectory();
+	}
+	
+	public boolean isSetAcceptUntrustedCertificate() {
+		return config.isSetAcceptUntrustedCertificates();
+	}
+	
+	public boolean isEnableJavascript() {
+		return config.isEnableJavascript();
+	}
+	
+	public String getBrowserDownloadDirectory() {
+		return config.getBrowserDownloadDirectory();
+	}
+	
+	public int getBrowserWindowHeight() {
+		return config.getBrowserWindowHeight();
+	}
+	
+	public int getBrowserWindowWidth() {
+		return config.getBrowserWindowWidth();
+	}
+	
+	//// Setter
+	public static void setWindowhandle(String windowhandle) {
+		windowHandle.set(windowhandle);
+	}
+	
+	public void setConfig(WebDriverConfig config) {
+		this.config = config;
+	}
+	
+	
+	public void setBrowserType(BrowserType browserType) {
+		config.setBrowserType(browserType);
+	}
+	
+	public void setFirefoxDriverPath(String path) {
+		config.setFirefoxDriverPath(path);
+	}
+	
+	public void setWebSessionTimeout(int timeout) {
+		config.setWebSessionTimeout(timeout);
+	}
+	
+	public void setImplicitWaitTimeout(double timeout) {
+		config.setImplicitWaitTimeout(timeout);
+	}
+	
+	public void setExplicitWaitTimeout(int timeout) {
+		config.setExplicitWaitTimeout(timeout);
+	}
+	
+	public void setPageLoadTimeout(int timeout) {
+		config.setPageLoadTimeout(timeout);
+	}
+	
+	public void setOutputDirectory(String path) {
+		config.setOutputDirectory(path);
+	}
+	
+	public void setSetAcceptUntrustedCertificate(boolean val) {
+		config.setSetAcceptUntrustedCertificates(val);
+	}
+	
+	public void setEnableJavascript(boolean val) {
+		config.setEnableJavascript(val);;
+	}
+	
+	public void setBrowserDownloadDirectory(String path) {
+		config.setBrowserDownloadDirectory(path);
+	}
+	
+	public void setBrowserWindowHeight(int height) {
+		config.setBrowserWindowHeight(height);
+	}
+	
+	public void getBrowserWindowWidth(int width) {
+		config.setBrowserWindowWidth(width);
+	}
+	
+	
+	
+	
 }

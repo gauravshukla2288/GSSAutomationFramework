@@ -11,27 +11,27 @@ import mygss.framework.WebAutomation.util.XMLHelper;
 
 public class ContextManager {
 	
-	private static Context globalContext;
+	private static Context context;
 	
-	private static ThreadLocal<Context> localContext = new ThreadLocal<Context>();
+	//private static ThreadLocal<Context> localContext = new ThreadLocal<Context>();
 	
-	public static Context getLocalContext() {
-		return localContext.get();
+	public static Context getContext() {
+		return context;
 	}
 
-	public static Context getGlobalContext() {
-		return globalContext;
-	}
+//	public static Context getGlobalContext() {
+//		return globalContext;
+//	}
 
-	public static void initThreadConytext(ITestContext testNGContext) {
+	public static void initContext(ITestContext testNGContext) {
 		Context ctx = new Context(testNGContext);
-		localContext.set(ctx);
+		context = ctx;
 	}
 	
-	public static void initGlobalContext(ITestContext iTestCtx) {
-		iTestCtx = getContextFromConfigFile(iTestCtx);
-		globalContext = new Context(iTestCtx);
-	}
+//	public static void initGlobalContext(ITestContext iTestCtx) {
+//		iTestCtx = getContextFromConfigFile(iTestCtx);
+//		globalContext = new Context(iTestCtx);
+//	}
 
 	private static ITestContext getContextFromConfigFile(ITestContext iTestCtx) {
 		if(iTestCtx != null) {
