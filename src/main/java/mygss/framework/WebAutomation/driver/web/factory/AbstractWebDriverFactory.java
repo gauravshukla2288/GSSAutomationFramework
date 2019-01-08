@@ -7,60 +7,52 @@ import org.openqa.selenium.WebDriverException;
 
 import mygss.framework.WebAutomation.driver.web.WebDriverConfig;
 
-public abstract class AbstractWebDriverfactory {
-	
+public abstract class AbstractWebDriverFactory {
+
 	protected WebDriverConfig config;
 	protected WebDriver driver;
 
-	public AbstractWebDriverfactory(WebDriverConfig config) {
+	public AbstractWebDriverFactory(WebDriverConfig config) {
 		this.config = config;
 	}
 
 	public void cleanUp() {
 		try {
-			if(driver!=null) {
+			if (driver != null) {
 				System.out.println(Thread.currentThread() + " : quiting webdriver");
 				driver.quit();
 			}
-		}
-		catch(WebDriverException e){
+		} catch (WebDriverException e) {
 			System.out.println(e.getMessage());
 		}
-		
 	}
-	
+
 	public void setImplicitWaitTimeout(double timeout) {
 		try {
-			driver.manage().timeouts().implicitlyWait((long)timeout, TimeUnit.SECONDS);
-		}catch(Exception e) {
+			driver.manage().timeouts().implicitlyWait((long) timeout, TimeUnit.SECONDS);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public WebDriver createWebDriver() {
 		return null;
 	}
-	
-	
+
 	// Getter and Setter
-	public WebDriverConfig getConfig() {
+	public WebDriverConfig getWebDriverConfig() {
 		return config;
 	}
 
-
-	public void setConfig(WebDriverConfig config) {
+	public void setWebDriverConfig(WebDriverConfig config) {
 		this.config = config;
 	}
 
-
-	public WebDriver getDriver() {
+	public WebDriver getWebDriver() {
 		return driver;
 	}
 
-
-	public void setDriver(WebDriver driver) {
+	public void setWebDriver(WebDriver driver) {
 		this.driver = driver;
 	}
-
-
 }

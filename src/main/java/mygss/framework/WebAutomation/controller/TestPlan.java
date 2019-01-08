@@ -21,14 +21,14 @@ public class TestPlan {
 	public void beforeTestSuite(ITestContext testContext){
 		start = new Date();
 		System.setProperty("AUTOMATION_FRAMEWORK", "MYGSS");
-		ContextManager.initGlobalContext(testContext);
+		ContextManager.initContext(testContext);
 		
 	}
 	
 	@BeforeMethod(alwaysRun =true)
 	public void beforeTestMethod(ITestContext testContext, Method method){
 		logger.info(Thread.currentThread() + " Start Method " + method.getName());
-		ContextManager.initGlobalContext(testContext);
+		ContextManager.initContext(testContext);
 	}
 
 	@AfterSuite

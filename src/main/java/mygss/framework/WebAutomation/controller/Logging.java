@@ -1,5 +1,10 @@
 package mygss.framework.WebAutomation.controller;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Appender;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
@@ -20,5 +25,12 @@ public class Logging {
 		}
 		return Logger.getLogger(clazz);
 	}
+	
+	
+	private static Map <String, Map<String,  Map<String, List <String>>>> pogeListenerLogMap = 
+			Collections.synchronizedMap(new  HashMap <String ,  Map<String,  Map <String ,  List <String>>>>());
+
+
+	
 	
 }

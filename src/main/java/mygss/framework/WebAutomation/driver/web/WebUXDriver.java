@@ -14,11 +14,8 @@ public class WebUXDriver {
 	private static ThreadLocal<WebUXDriver> uxDriverSession = new ThreadLocal<WebUXDriver>();
 	private static ThreadLocal<String> windowHandle = new ThreadLocal<String>();
 	
-	
-
 	private WebDriverConfig config = new WebDriverConfig();
 	private WebDriver driver;
-	
 	
 	public static void cleanUp() {
 		WebDriver driver = driverSession.get();
@@ -32,23 +29,40 @@ public class WebUXDriver {
 		
 	}
 	
+	public static WebDriver getWebDriver() {
+		if(driverSession.get()==null)
+			getWebUXDriver().createWebDriver();
+		 return driverSession.get();
+	}
+	
 	public static WebUXDriver getWebUXDriver() {
 		if(uxDriverSession.get()==null)
 			uxDriverSession.set(new WebUXDriver());
 		 return uxDriverSession.get();
 	}
 	
-	public static WebDriver getWebDriver() {
-		if(driverSession.get()==null)
-			getWebUXDriver().createWebDriver();
-		 return driverSession.get();
+	// Constructor
+	
+	public WebUXDriver() {
+		init();
+		uxDriverSession.set(this);
 	}
+	
+	
+	public WebUXDriver(BrowserType  browserType) {
+		init();
+		this.setBrowserType(browserType);
+		uxDriverSession.set(this);
+	}
+	
+	
 
 	public WebDriver createWebDriver() {
-		
 		System.out.println(Thread.currentThread() + " : " +new Date() + "Starting creating webdriver instance : " + this.getBrowser());
-		
-		
+				
+		driver = createRemoteWebDriver(config.getBrowserType().getType());
+		driverSession.set(driver);
+		setWindowhandle(driver.getWindowHandle());
 		return driver;
 	}
 	
@@ -84,12 +98,7 @@ public class WebUXDriver {
 		
 		return driver;
 	}
-	
-	public WebUXDriver() {
-		init();
-		uxDriverSession.set(this);
-	}
-	
+
 	public String getBrowser() {
 		return config.getBrowserType().getType();
 	}
