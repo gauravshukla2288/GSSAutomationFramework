@@ -30,7 +30,4 @@ public class Logging {
 	private static Map <String, Map<String,  Map<String, List <String>>>> pogeListenerLogMap = 
 			Collections.synchronizedMap(new  HashMap <String ,  Map<String,  Map <String ,  List <String>>>>());
 
-
-	
-	
 }
